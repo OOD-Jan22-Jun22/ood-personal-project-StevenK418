@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOD_S00200293_PersonalProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="664">
+        Title="MainWindow" Height="450" Width="664" Loaded="Window_Loaded">
     <Grid>
-        <ListBox x:Name="LBX_Games" HorizontalAlignment="Left" Height="160" Margin="23,99,0,0" VerticalAlignment="Top" Width="217"/>
+        <ListBox x:Name="LBX_Games" HorizontalAlignment="Left" Height="160" Margin="23,99,0,0" VerticalAlignment="Top" Width="217" SelectionChanged="LBX_Games_SelectionChanged"/>
         <TextBox x:Name="TBX_Search" HorizontalAlignment="Left" Height="23" Margin="23,69,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="217"/>
         <Label Content="GAME DATABASE" HorizontalAlignment="Left" Margin="23,15,0,0" VerticalAlignment="Top" Width="300" Height="41" FontSize="24" Foreground="#FF0074FF" FontFamily="Segoe UI Black"/>
         <RadioButton x:Name="RDBTN_All" Content="All" GroupName="Category_filter" HorizontalAlignment="Left" Margin="23,274,0,0" VerticalAlignment="Top"/>
@@ -16,7 +16,7 @@
         <RadioButton x:Name="RDBTN_ESRB" Content="ESRB" GroupName="Category_filter" HorizontalAlignment="Left" Margin="23,334,0,0" VerticalAlignment="Top"/>
         <Button x:Name="BTN_Random" Content="Random Game" HorizontalAlignment="Left" Margin="23,366,0,0" VerticalAlignment="Top" Width="101" Height="28"/>
         <Button x:Name="BTN_AddNew" Content="Add New Game" HorizontalAlignment="Left" Margin="148,366,0,0" VerticalAlignment="Top" Width="92" Background="#FF0074FF" Foreground="White" Height="29"/>
-        <Image HorizontalAlignment="Left" Height="88" Margin="376,38,0,0" VerticalAlignment="Top" Width="76"/>
+        <Image x:Name="IMG_CoverArt" HorizontalAlignment="Left" Height="108" Margin="376,38,0,0" VerticalAlignment="Top" Width="76" Source="CallofDutycover.jpg"/>
         <Label Content="Release Date:" HorizontalAlignment="Left" Margin="376,263,0,0" VerticalAlignment="Top" Width="91" FontWeight="Bold"/>
         <Label Content="Publisher:" HorizontalAlignment="Left" Margin="376,294,0,0" VerticalAlignment="Top" Width="76" FontWeight="Bold"/>
         <Label Content="Rating:" HorizontalAlignment="Left" Margin="376,325,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
