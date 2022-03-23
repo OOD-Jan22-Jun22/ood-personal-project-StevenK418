@@ -32,9 +32,6 @@ namespace OOD_S00200293_PersonalProject
             {
                 games.Add(new Game("Call Of Duty", "A war game shooty bang bang!", new DateTime(), "Activision", 15, 18 ));
             }
-
-
-
             LBX_Games.ItemsSource = games;
         }
 
@@ -48,11 +45,6 @@ namespace OOD_S00200293_PersonalProject
             TBLK_ESRB.Text = game.ESRB.ToString();
             TBLK_PEGI.Text = game.PEGI.ToString();
 
-           // BitmapImage coverArt = new BitmapImage(new Uri("/Resources/Images/Call_of_Duty_(2003)_cover.jpg"));
-            //IMG_CoverArt.Source = new BitmapImage(new Uri("Resources/Images/CallofDutycover.jpg"));
-
-
-           
             BitmapImage coverArt = new BitmapImage();
             coverArt.BeginInit();
             coverArt.UriSource = new Uri("/Resources/Images/CallofDutycover.jpg", UriKind.Relative);
