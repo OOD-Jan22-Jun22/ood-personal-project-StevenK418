@@ -8,6 +8,8 @@ namespace OOD_S00200293_PersonalProject
 {
     class Game
     {
+        public int GameId { get; set; }
+
         private string title;
 
         public string Title
@@ -56,7 +58,16 @@ namespace OOD_S00200293_PersonalProject
             set { pegi = value; }
         }
 
-        public Game(string title, string description, DateTime releaseDate, string publisher, int esrb, int pegi)
+        private string image;
+
+        public string Image
+        {
+            get { return image; }
+            set { image = value; }
+        }
+
+
+        public Game(string title, string description, DateTime releaseDate, string publisher, int esrb, int pegi, string image)
         {
             this.Title = title;
             this.Description = description;
@@ -64,6 +75,7 @@ namespace OOD_S00200293_PersonalProject
             this.Publisher = publisher;
             this.ESRB = esrb;
             this.PEGI = pegi;
+            this.Image = image;
         }
 
         public override string ToString()

@@ -30,14 +30,18 @@ namespace OOD_S00200293_PersonalProject
         {
             for (int i = 0; i < 26; i++)
             {
-                games.Add(new Game("Call Of Duty", "A war game shooty bang bang!", new DateTime(), "Activision", 15, 18 ));
+                games.Add(new Game("Call Of Duty", "A war game shooty bang bang!", new DateTime(), "Activision", 15, 18, "/Resources/Images/CallofDutycover.jpg"));
             }
             LBX_Games.ItemsSource = games;
         }
 
-
+        /// <summary>
+        /// Updates the UI with the game data.
+        /// </summary>
+        /// <param name="game"></param>
         private void UpdateUI(Game game)
         {
+            //Update all the text fields
             TBLK_Title.Text = game.Title;
             TBLK_Description.Text = game.Description;
             TBLK_Publisher.Text = game.Publisher;
@@ -45,9 +49,10 @@ namespace OOD_S00200293_PersonalProject
             TBLK_ESRB.Text = game.ESRB.ToString();
             TBLK_PEGI.Text = game.PEGI.ToString();
 
+            //Update the image
             BitmapImage coverArt = new BitmapImage();
             coverArt.BeginInit();
-            coverArt.UriSource = new Uri("/Resources/Images/CallofDutycover.jpg", UriKind.Relative);
+            coverArt.UriSource = new Uri(game.Image, UriKind.Relative);
             coverArt.EndInit();
             IMG_CoverArt.Stretch = Stretch.Fill;
             IMG_CoverArt.Source = coverArt;

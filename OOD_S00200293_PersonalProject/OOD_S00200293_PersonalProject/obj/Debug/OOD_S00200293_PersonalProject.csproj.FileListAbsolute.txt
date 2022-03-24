@@ -34,6 +34,5 @@ C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OO
 C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\obj\Debug\OOD_S00200293_PersonalProject.csproj.CopyComplete
 C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\obj\Debug\OOD_S00200293_PersonalProject.exe
 C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\obj\Debug\OOD_S00200293_PersonalProject.pdb
-C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\IGDB.dll
 C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\RestEase.dll
 C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\RestEase.xml
