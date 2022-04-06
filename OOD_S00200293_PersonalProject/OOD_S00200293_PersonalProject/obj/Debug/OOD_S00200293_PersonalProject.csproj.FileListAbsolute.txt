@@ -36,3 +36,7 @@ C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OO
 C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\obj\Debug\OOD_S00200293_PersonalProject.pdb
 C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\RestEase.dll
 C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\RestEase.xml
+C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\EntityFramework.dll
+C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\EntityFramework.xml
+C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\EntityFramework.SqlServer.xml

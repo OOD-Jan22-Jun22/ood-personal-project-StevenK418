@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace OOD_S00200293_PersonalProject
 {
@@ -33,6 +37,24 @@ namespace OOD_S00200293_PersonalProject
                 games.Add(new Game("Call Of Duty", "A war game shooty bang bang!", new DateTime(), "Activision", 15, 18, "/Resources/Images/CallofDutycover.jpg"));
             }
             LBX_Games.ItemsSource = games;
+
+            APIManager manager = new APIManager();
+            manager.endPoint = "http://www.omdbapi.com/?apikey=5d4bd3b3&s=bob";
+
+            string response = string.Empty;
+            response = manager.MakeRequest();
+            Console.WriteLine(response);
+
+            JObject obj = JObject.Parse(response);
+            JArray arr = (JArray) obj["Search"];
+            IList<Movie> movie = arr.ToObject<IList<Movie>>();
+
+            foreach (var item in movie)
+            {
+                Console.WriteLine(item.Title);
+            }
+
+
         }
 
         /// <summary>
