@@ -6,6 +6,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace OOD_S00200293_PersonalProject
 {
@@ -29,6 +31,10 @@ namespace OOD_S00200293_PersonalProject
             method = httpMethod.GET;
         }
 
+        /// <summary>
+        /// Makes a HTTP request to a given endpoint
+        /// </summary>
+        /// <returns></returns>
         public string MakeRequest()
         {
             string responseValue = string.Empty;
@@ -59,6 +65,33 @@ namespace OOD_S00200293_PersonalProject
             }
 
             return responseValue;
+        }
+
+        /// <summary>
+        /// Processes a multi object response from the API
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
+        public IList<Movie> ProcessDataRecords(string response)
+        {
+            //Parse response
+            JObject obj = JObject.Parse(response);
+            //Convert the response into an array
+            JArray arr = (JArray)obj["Search"];
+            //Store the resultant array in a list
+            IList<Movie> movies = arr.ToObject<IList<Movie>>();
+            return movies;
+        }
+
+        /// <summary>
+        /// Processes a single object response from the API
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
+        public Movie ProcessDataRecord(string response)
+        {
+            Movie movie = JsonConvert.DeserializeObject<Movie>(response);
+            return movie;
         }
     }
 }

@@ -11,12 +11,16 @@ namespace OOD_S00200293_PersonalProject
         public string Movieid { get; set; }
         public string Title { get; set; }
         public string Year { get; set; }
-        public string ImbdID { get; set; }
-        public string PosterImage { get; set; }
+        public string ImdbID { get; set; }
+        public string imbdRating { get; set; }
+        public string Poster { get; set; }
+        public string Plot { get; set; }
+        public string Rated { get; set; }
+        public string Director { get; set; }
 
         public override string ToString()
         {
-            return $"{Movieid} - {Movieid} - {Year} - {ImbdID} - {PosterImage}";
+            return string.Format($"{Title} - {Year} - {ImdbID} - {Poster}");
         }
     }
 }
