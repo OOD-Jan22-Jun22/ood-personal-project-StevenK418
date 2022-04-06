@@ -45,13 +45,17 @@ namespace OOD_S00200293_PersonalProject
             response = manager.MakeRequest();
             Console.WriteLine(response);
 
+            //Parse response
             JObject obj = JObject.Parse(response);
+            //Convert the response into an array
             JArray arr = (JArray) obj["Search"];
-            IList<Movie> movie = arr.ToObject<IList<Movie>>();
+            //Store the resultant array in a list
+            IList<Movie> movies = arr.ToObject<IList<Movie>>();
 
-            foreach (var item in movie)
+            //iterate through movies array and print
+            foreach (var movie in movies)
             {
-                Console.WriteLine(item.Title);
+                Console.WriteLine(movie.Title);
             }
 
 
