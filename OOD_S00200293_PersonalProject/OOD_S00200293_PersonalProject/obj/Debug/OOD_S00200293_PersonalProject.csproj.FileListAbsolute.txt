@@ -40,3 +40,11 @@ C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OO
 C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\EntityFramework.xml
 C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\obj\Debug\AddMovie.g.cs
+C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\obj\Debug\AddMovie.baml
+C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\MaterialDesignColors.dll
+C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\MaterialDesignColors.pdb
+C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\steve\Documents\OOD_Personal_Project\ood-personal-project-StevenK418\OOD_S00200293_PersonalProject\OOD_S00200293_PersonalProject\obj\Debug\App.baml
