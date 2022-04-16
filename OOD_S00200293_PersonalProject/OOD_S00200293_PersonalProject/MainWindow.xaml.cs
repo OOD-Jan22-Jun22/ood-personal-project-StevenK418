@@ -34,7 +34,7 @@ namespace OOD_S00200293_PersonalProject
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            SearchMoviesByTitle("Lion");
+            //SearchMoviesByTitle("Lion");
         }
 
         /// <summary>
@@ -46,10 +46,10 @@ namespace OOD_S00200293_PersonalProject
             //Update all the text fields
             TBLK_Title.Text = movie.Title;
             TBLK_Description.Text = movie.Plot;
-            TBLK_Publisher.Text = movie.Director;
+            TBLK_Director.Text = movie.Director;
             TBLK_ReleaseDate.Text = movie.Year;
-            TBLK_ESRB.Text = movie.Rated;
-            TBLK_PEGI.Text = movie.imbdRating;
+            TBLK_IMDBRating.Text = movie.imbdRating;
+            TBLK_PEGI.Text = movie.Rated;
 
             //Update the image
             BitmapImage coverArt = new BitmapImage();
