@@ -34,7 +34,7 @@ namespace OOD_S00200293_PersonalProject
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            SearchMoviesByTitle("Lion");
+            //SearchMoviesByTitle("Lion");
         }
 
         /// <summary>
@@ -46,10 +46,10 @@ namespace OOD_S00200293_PersonalProject
             //Update all the text fields
             TBLK_Title.Text = movie.Title;
             TBLK_Description.Text = movie.Plot;
-            TBLK_Publisher.Text = movie.Director;
+            TBLK_Director.Text = movie.Director;
             TBLK_ReleaseDate.Text = movie.Year;
-            TBLK_ESRB.Text = movie.Rated;
-            TBLK_PEGI.Text = movie.imbdRating;
+            TBLK_IMDBRating.Text = movie.imbdRating;
+            TBLK_PEGI.Text = movie.Rated;
 
             //Update the image
             BitmapImage coverArt = new BitmapImage();
@@ -58,22 +58,6 @@ namespace OOD_S00200293_PersonalProject
             coverArt.EndInit();
             IMG_CoverArt.Stretch = Stretch.Fill;
             IMG_CoverArt.Source = coverArt;
-
-            /*//Update all the text fields
-            TBLK_Title.Text = game.Title;
-            TBLK_Description.Text = game.Description;
-            TBLK_Publisher.Text = game.Publisher;
-            TBLK_ReleaseDate.Text = game.ReleaseDate.ToShortDateString();
-            TBLK_ESRB.Text = game.ESRB.ToString();
-            TBLK_PEGI.Text = game.PEGI.ToString();
-
-            //Update the image
-            BitmapImage coverArt = new BitmapImage();
-            coverArt.BeginInit();
-            coverArt.UriSource = new Uri(game.Image, UriKind.Relative);
-            coverArt.EndInit();
-            IMG_CoverArt.Stretch = Stretch.Fill;
-            IMG_CoverArt.Source = coverArt;*/
         }
 
         /// <summary>
@@ -96,7 +80,7 @@ namespace OOD_S00200293_PersonalProject
 
             List<Movie> movies = (List<Movie>)manager.ProcessDataRecords(response);
 
-            LBX_Games.ItemsSource = movies;
+            LBX_Movies.ItemsSource = movies;
             
             UpdateUI(movies[0]);
         }
@@ -124,12 +108,12 @@ namespace OOD_S00200293_PersonalProject
             UpdateUI(movie);
         }
 
-        private void LBX_Games_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LBX_Movies_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Movie selectedGame = (Movie) LBX_Games.SelectedItem;
-            if (selectedGame != null)
+            Movie selectedMovie = (Movie) LBX_Movies.SelectedItem;
+            if (selectedMovie != null)
             {
-                SearchMovieByTitle(selectedGame.Title);
+                SearchMovieByTitle(selectedMovie.Title);
             }
         }
 
@@ -141,6 +125,14 @@ namespace OOD_S00200293_PersonalProject
             {
                 SearchMoviesByTitle(value);
             }
+        }
+
+        private void BTN_AddNew_Click(object sender, RoutedEventArgs e)
+        {
+            //Create a new instance of the addmovie window class
+            AddMovie addMovieWindow = new AddMovie();
+            //Display the add Move window
+            addMovieWindow.Show();
         }
     }
 }
