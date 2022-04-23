@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOD_S00200293_PersonalProject"
         Title="MainWindow" Height="450" Width="664" Loaded="Window_Loaded">
-    <Grid Margin="16,-8,-16,8">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

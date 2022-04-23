@@ -117,6 +117,7 @@
       <DependentUpon>AddMovie.xaml</DependentUpon>
     </Compile>
     <Compile Include="APIManager.cs" />
+    <Compile Include="DatabaseManager.cs" />
     <Compile Include="test.cs" />
     <Page Include="AddMovie.xaml">
       <SubType>Designer</SubType>

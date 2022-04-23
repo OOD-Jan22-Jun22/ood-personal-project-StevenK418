@@ -18,10 +18,8 @@ namespace OOD_S00200293_PersonalProject
         PUT,
         DELETE
     }
-
     class APIManager
     {
-
         public string endPoint { get; set; }
         public httpMethod method { get; set; }
 

@@ -6,8 +6,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOD_S00200293_PersonalProject"
-        mc:Ignorable="d"
-        Title="AddMovie" Height="450" Width="800">
+        Title="AddMovie" Height="450" Width="800" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -20,12 +19,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Style="{StaticResource MaterialDesignLabel}" Content="Add Movie" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="193" FontSize="24"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="33,68,0,0" TextWrapping="Wrap" Text="Year" VerticalAlignment="Top" Width="98" Grid.Column="1"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="40,68,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Width="252"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="40,48,0,0" Grid.Row="2" TextWrapping="Wrap" Text="IMDBRating" VerticalAlignment="Top" Width="239" TextChanged="TextBox_TextChanged"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="33,48,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Rated" VerticalAlignment="Top" Width="280"/>
-        <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Add Movie" Margin="20,52,246,20" Grid.Row="3"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="40,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Director" VerticalAlignment="Top" Width="120"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="33,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Plot" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TBX_YearInput" x:FieldModifier="public" HorizontalAlignment="Left" Height="23" Margin="33,68,0,0" TextWrapping="Wrap" Text="Year" VerticalAlignment="Top" Width="98" Grid.Column="1" TabIndex="2"/>
+        <TextBox x:Name="TBX_TitleInput" x:FieldModifier="public" HorizontalAlignment="Left" Height="23" Margin="40,68,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Width="252" TabIndex="1"/>
+        <TextBox x:Name="TBX_IMDBRatingInput" x:FieldModifier="public" HorizontalAlignment="Left" Height="23" Margin="40,48,0,0" Grid.Row="2" TextWrapping="Wrap" Text="IMDBRating" VerticalAlignment="Top" Width="239" TabIndex="5"/>
+        <TextBox Grid.Column="1"  x:Name="TBX_RatedInput" x:FieldModifier="public" HorizontalAlignment="Left" Height="23" Margin="33,48,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Rated" VerticalAlignment="Top" Width="280" TabIndex="6"/>
+        <Button x:Name="BTN_AddMovie" x:FieldModifier="public" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Add Movie" Margin="20,52,246,20" Grid.Row="3" Click="BTN_AddMovie_Click" TabIndex="8"/>
+        <TextBox x:Name="TBX_DirectorInput" x:FieldModifier="public" HorizontalAlignment="Left" Height="23" Margin="40,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Director" VerticalAlignment="Top" Width="252" TabIndex="3"/>
+        <TextBox Grid.Column="1"  x:Name="TBX_PlotInput" x:FieldModifier="public" HorizontalAlignment="Left" Height="23" Margin="33,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Plot" VerticalAlignment="Top" Width="280" TabIndex="4"/>
+        <TextBox Grid.Column="1" x:Name="TBX_PosterInput" x:FieldModifier="public" HorizontalAlignment="Left" Height="24" Margin="33,52,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Add Poster URL" VerticalAlignment="Top" Width="280" TabIndex="7"/>
     </Grid>
 </Window>
