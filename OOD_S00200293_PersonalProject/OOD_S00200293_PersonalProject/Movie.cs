@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace OOD_S00200293_PersonalProject
 {
-    class Movie
+    public class Movie
     {
         public string MovieID { get; set; }
         public string Title { get; set; }

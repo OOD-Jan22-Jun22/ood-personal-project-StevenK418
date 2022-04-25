@@ -8,15 +8,33 @@ using MaterialDesignThemes.Wpf.Transitions;
 
 namespace OOD_S00200293_PersonalProject
 {
-    class DatabaseManager
+    public class DatabaseManager
     {
         public static Movie.MovieData db = new Movie.MovieData();
 
-        public static void CreateDatabase(List<Movie> movies)
+        public DatabaseManager(){}
+
+
+        //Singleton instantiation and setup
+        private static DatabaseManager instance = null;
+
+        public static DatabaseManager Instance
         {
-            AddToDatabase(movies);
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new DatabaseManager();
+                }
+
+                return instance;
+            }
         }
 
+        /// <summary>
+        /// Adds a new List of movies to the database
+        /// </summary>
+        /// <param name="movies"></param>
         public static void AddToDatabase(List<Movie> movies)
         {
             using (db)
