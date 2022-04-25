@@ -22,39 +22,57 @@ namespace OOD_S00200293_PersonalProject
     {
         List<Movie> movies = new List<Movie>();
 
-
         public AddMovie():base()
         {
             InitializeComponent();
-            
         }
-
 
         private void BTN_AddMovie_Click(object sender, RoutedEventArgs e)
         {
+            //Add the movie details to the database
+            AddMovieToDatabase(TBX_TitleInput.Text, TBX_YearInput.Text, TBX_IMDBRatingInput.Text, TBX_PosterInput.Text, TBX_PlotInput.Text, TBX_RatedInput.Text, TBX_DirectorInput.Text);
+        }
+
+        /// <summary>
+        /// Adds a new movie item to the database.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="year"></param>
+        /// <param name="imdbRating"></param>
+        /// <param name="posterURL"></param>
+        /// <param name="plot"></param>
+        /// <param name="rated"></param>
+        /// <param name="director"></param>
+        private void AddMovieToDatabase(string title, string year, string imdbRating, string posterURL, string plot, string rated, string director)
+        {
+            //Get the current number of rows in the database
             int numberOfRows = DatabaseManager.db.Movies.Count();
+
+            //Increment the number of rows by one to get the id of the new movie
             numberOfRows++;
 
+            //Construct a new movie object
             Movie movie = new Movie()
             {
                 MovieID = numberOfRows.ToString(),
-                Title = TBX_TitleInput.Text,
-                Year = TBX_YearInput.Text,
-                ImbdRating = TBX_IMDBRatingInput.Text,
-                Poster = TBX_PosterInput.Text,
-                Plot = TBX_PlotInput.Text,
-                Rated = TBX_YearInput.Text,
-                Director = TBX_DirectorInput.Text
+                Title = title,
+                Year = year,
+                ImbdRating = imdbRating,
+                Poster = posterURL,
+                Plot = plot,
+                Rated = rated,
+                Director = director
             };
 
+            //Add the movie to the movies collection
             movies.Add(movie);
 
+            //Add the movies to the database
             DatabaseManager.AddToDatabase(movies);
 
             //Clear the movies list
-            //movies.Clear();
+            movies.Clear();
         }
-
 
         /// <summary>
         /// Clears the placeholder text from a given textbox
@@ -66,6 +84,5 @@ namespace OOD_S00200293_PersonalProject
             //Clear the placeholder text from the textbox
             box.Clear();
         }
-        
     }
 }
