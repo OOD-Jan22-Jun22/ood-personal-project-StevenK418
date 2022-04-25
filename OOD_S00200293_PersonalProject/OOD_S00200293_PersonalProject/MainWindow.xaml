@@ -36,5 +36,8 @@
         <Button x:Name="BTN_SearchMovie" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Search" Grid.Column="0" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="75" Click="BTN_SearchMovie_Click" Height="31"/>
         <TextBlock x:Name="TBLK_IMDBRating" HorizontalAlignment="Left" Margin="121,314,0,0" TextWrapping="Wrap" Text="TextBlock" Grid.Column="1" VerticalAlignment="Top"/>
         <Label x:Name="IMDBRating" Content="IMDB Rating:" HorizontalAlignment="Left" Margin="28,308,0,0" Grid.Column="1" VerticalAlignment="Top" FontWeight="Bold"/>
+        <RadioButton x:Name="RDBTN_API" GroupName="Search_Source_Selection" Content="API" HorizontalAlignment="Left" Margin="182,100,0,0"  Grid.Column="0" VerticalAlignment="Top" IsChecked="True"/>
+        <RadioButton x:Name="RDBTN_Database" GroupName="Search_Source_Selection" Content="Database" HorizontalAlignment="Left" Margin="247,100,0,0" Grid.Column="0" VerticalAlignment="Top"/>
+        <Label Style="{StaticResource MaterialDesignLabel}" Content="Source:" HorizontalAlignment="Left" Margin="130,96,0,0" Grid.Column="0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
