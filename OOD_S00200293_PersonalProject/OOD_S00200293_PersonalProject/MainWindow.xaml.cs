@@ -48,7 +48,7 @@ namespace OOD_S00200293_PersonalProject
             TBLK_Description.Text = movie.Plot;
             TBLK_Director.Text = movie.Director;
             TBLK_ReleaseDate.Text = movie.Year;
-            TBLK_IMDBRating.Text = movie.imbdRating;
+            TBLK_IMDBRating.Text = movie.imdbRating;
             TBLK_PEGI.Text = movie.Rated;
 
             //Update the image

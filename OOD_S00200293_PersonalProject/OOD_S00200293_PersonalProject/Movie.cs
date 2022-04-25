@@ -13,7 +13,7 @@ namespace OOD_S00200293_PersonalProject
         public string MovieID { get; set; }
         public string Title { get; set; }
         public string Year { get; set; }
-        public string imbdRating { get; set; }
+        public string imdbRating { get; set; }
         public string Poster { get; set; }
         public string Plot { get; set; }
         public string Rated { get; set; }

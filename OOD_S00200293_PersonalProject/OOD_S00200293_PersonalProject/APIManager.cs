@@ -164,6 +164,7 @@ namespace OOD_S00200293_PersonalProject
             endPoint = baseUrl + APIKey + searchQueryPrefix + title;
 
             string response = string.Empty;
+
             response = MakeRequest();
             
             Movie movie = ProcessSingleDataRecord(response);
