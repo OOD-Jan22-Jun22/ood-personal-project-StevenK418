@@ -103,6 +103,21 @@ namespace OOD_S00200293_PersonalProject
             return movies;
         }
 
+
+        /// <summary>
+        /// Processes a multi object response from the API
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
+        public Movie ProcessSingleDataRecord(string response)
+        {
+            //Parse response
+            JObject obj = JObject.Parse(response);
+            //Store the resultant object 
+            Movie movie = obj.ToObject<Movie>();
+            return movie;
+        }
+
         /// <summary>
         /// Processes a single object response from the API
         /// </summary>
@@ -137,10 +152,9 @@ namespace OOD_S00200293_PersonalProject
 
         /// <summary>
         /// Searches for movies with a given title or keyword
-        /// TODO: Adaption to ProcessDataRecords needed before implementing
         /// </summary>
         /// <param name="title"></param>
-        public List<Movie> SearchMoviesByTitleOnly(string title)
+        public Movie SearchMoviesByTitleOnly(string title)
         {
             string baseUrl = "http://www.omdbapi.com/?apikey=";
             string APIKey = "5d4bd3b3";
@@ -151,10 +165,10 @@ namespace OOD_S00200293_PersonalProject
 
             string response = string.Empty;
             response = MakeRequest();
+            
+            Movie movie = ProcessSingleDataRecord(response);
 
-            List<Movie> movies = (List<Movie>)ProcessDataRecords(response);
-
-            return movies;
+            return movie;
         }
     }
 }

@@ -71,8 +71,8 @@ namespace OOD_S00200293_PersonalProject
             
             if (RDBTN_API.IsChecked == true)
             { 
-                //Get a result set from the API
-                movies = APIManager.Instance.SearchMovies(title);
+                //Get a single result set from the API
+                movies.Add(APIManager.Instance.SearchMoviesByTitleOnly(title));
             }
             else
             {
