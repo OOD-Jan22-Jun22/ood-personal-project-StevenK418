@@ -54,7 +54,7 @@ namespace OOD_S00200293_PersonalProject
                 MovieID = numberOfRows.ToString(),
                 Title = title,
                 Year = year,
-                ImbdRating = imdbRating,
+                imbdRating = imdbRating,
                 Poster = posterURL,
                 Plot = plot,
                 Rated = rated,

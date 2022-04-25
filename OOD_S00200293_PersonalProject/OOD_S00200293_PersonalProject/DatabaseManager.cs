@@ -52,5 +52,15 @@ namespace OOD_S00200293_PersonalProject
                 db.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// Searches for movies with a given title or keyword
+        /// </summary>
+        /// <param name="title"></param>
+        public List<Movie> SearchMovies(string title)
+        {
+            return null;
+
+        }
     }
 }

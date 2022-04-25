@@ -11,6 +11,10 @@ using Newtonsoft.Json.Linq;
 
 namespace OOD_S00200293_PersonalProject
 {
+
+
+
+
     public enum httpMethod
     {
         GET,
@@ -20,6 +24,24 @@ namespace OOD_S00200293_PersonalProject
     }
     class APIManager
     {
+
+        //Singleton instantiation and setup
+        private static APIManager instance = null;
+
+        public static APIManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new APIManager();
+                }
+
+                return instance;
+            }
+        }
+
+
         public string endPoint { get; set; }
         public httpMethod method { get; set; }
 
@@ -90,6 +112,49 @@ namespace OOD_S00200293_PersonalProject
         {
             Movie movie = JsonConvert.DeserializeObject<Movie>(response);
             return movie;
+        }
+
+        /// <summary>
+        /// Searches for movies with a given title or keyword
+        /// </summary>
+        /// <param name="title"></param>
+        public List<Movie> SearchMovies(string title)
+        {
+            string baseUrl = "http://www.omdbapi.com/?apikey=";
+            string APIKey = "5d4bd3b3";
+            string searchQueryPrefix = "&s=";
+            string searchValue = title;
+
+            endPoint = baseUrl + APIKey + searchQueryPrefix + title;
+
+            string response = string.Empty;
+            response = MakeRequest();
+
+            List<Movie> movies = (List<Movie>)ProcessDataRecords(response);
+
+            return movies;
+        }
+
+        /// <summary>
+        /// Searches for movies with a given title or keyword
+        /// TODO: Adaption to ProcessDataRecords needed before implementing
+        /// </summary>
+        /// <param name="title"></param>
+        public List<Movie> SearchMoviesByTitleOnly(string title)
+        {
+            string baseUrl = "http://www.omdbapi.com/?apikey=";
+            string APIKey = "5d4bd3b3";
+            string searchQueryPrefix = "&t=";
+            string searchValue = title;
+
+            endPoint = baseUrl + APIKey + searchQueryPrefix + title;
+
+            string response = string.Empty;
+            response = MakeRequest();
+
+            List<Movie> movies = (List<Movie>)ProcessDataRecords(response);
+
+            return movies;
         }
     }
 }

@@ -48,7 +48,7 @@ namespace OOD_S00200293_PersonalProject
             TBLK_Description.Text = movie.Plot;
             TBLK_Director.Text = movie.Director;
             TBLK_ReleaseDate.Text = movie.Year;
-            TBLK_IMDBRating.Text = movie.ImbdRating;
+            TBLK_IMDBRating.Text = movie.imbdRating;
             TBLK_PEGI.Text = movie.Rated;
 
             //Update the image
@@ -66,19 +66,19 @@ namespace OOD_S00200293_PersonalProject
         /// <param name="title"></param>
         public void SearchMoviesByTitle(string title)
         {
-            string baseUrl = "http://www.omdbapi.com/?apikey=";
-            string APIKey = "5d4bd3b3";
-            string searchQueryPrefix = "&s=";
-            string searchValue = title;
+
+            List<Movie> movies = new List<Movie>();
             
-            APIManager manager = new APIManager();
-
-            manager.endPoint = baseUrl + APIKey + searchQueryPrefix + title;
-
-            string response = string.Empty;
-            response = manager.MakeRequest();
-
-            List<Movie> movies = (List<Movie>)manager.ProcessDataRecords(response);
+            if (RDBTN_API.IsChecked == true)
+            { 
+                //Get a result set from the API
+                movies = APIManager.Instance.SearchMovies(title);
+            }
+            else
+            {
+                //Get a Result set from the database
+                movies = DatabaseManager.Instance.SearchMovies(title);
+            }
 
             LBX_Movies.ItemsSource = movies;
             
