@@ -11,10 +11,6 @@ using Newtonsoft.Json.Linq;
 
 namespace OOD_S00200293_PersonalProject
 {
-
-
-
-
     public enum httpMethod
     {
         GET,
@@ -40,8 +36,6 @@ namespace OOD_S00200293_PersonalProject
                 return instance;
             }
         }
-
-
         public string endPoint { get; set; }
         public httpMethod method { get; set; }
 
@@ -103,7 +97,6 @@ namespace OOD_S00200293_PersonalProject
             return movies;
         }
 
-
         /// <summary>
         /// Processes a multi object response from the API
         /// </summary>
@@ -161,14 +154,19 @@ namespace OOD_S00200293_PersonalProject
             string searchQueryPrefix = "&t=";
             string searchValue = title;
 
+            //Construct the endpoint url
             endPoint = baseUrl + APIKey + searchQueryPrefix + title;
 
+            //Declare a new string to store response
             string response = string.Empty;
 
+            //Make response and store in the response string
             response = MakeRequest();
             
+            //Pass the response data to be parsed and store as a movie object
             Movie movie = ProcessSingleDataRecord(response);
 
+            //Return the movie
             return movie;
         }
     }
