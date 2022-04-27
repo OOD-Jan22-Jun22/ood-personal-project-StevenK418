@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,8 +21,6 @@ namespace OOD_S00200293_PersonalProject
     /// </summary>
     public partial class AddMovie : Window
     {
-       
-
         public AddMovie():base()
         {
             InitializeComponent();
@@ -40,6 +39,8 @@ namespace OOD_S00200293_PersonalProject
                                         TBX_RatedInput.Text, 
                                         TBX_DirectorInput.Text
                                     );
+            //Clear the values in the input fields
+            ClearAllValues();
         }
 
         /// <summary>
@@ -86,6 +87,26 @@ namespace OOD_S00200293_PersonalProject
         private void TBX_PosterInput_GotFocus(object sender, RoutedEventArgs e)
         {
             ClearInputText((TextBox)sender);
+        }
+
+        /// <summary>
+        /// Clears all the fields of values
+        /// </summary>
+        private void ClearAllValues()
+        {
+            List<TextBox> boxes = new List<TextBox>();
+            boxes.Add(TBX_TitleInput);
+            boxes.Add(TBX_YearInput);
+            boxes.Add(TBX_IMDBRatingInput);
+            boxes.Add(TBX_PosterInput);
+            boxes.Add(TBX_PlotInput);
+            boxes.Add(TBX_RatedInput);
+            boxes.Add(TBX_DirectorInput);
+
+            foreach (TextBox box in boxes)
+            {
+                ClearInputText(box);
+            }
         }
     }
 }

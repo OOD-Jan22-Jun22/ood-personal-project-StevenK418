@@ -33,6 +33,6 @@
         <Label Content="Title:" HorizontalAlignment="Left" Margin="20,44,0,0" VerticalAlignment="Top"/>
         <Label Content="Rated:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,10,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <Label Content="Plot:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,17,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Poster URL:" Grid.Column="1" HorizontalAlignment="Left" Margin="25,28,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <Label Content="Poster URL:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,23,0,0" Grid.Row="3" VerticalAlignment="Top"/>
     </Grid>
 </Window>
