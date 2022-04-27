@@ -118,6 +118,15 @@
     </Compile>
     <Compile Include="APIManager.cs" />
     <Compile Include="DatabaseManager.cs" />
+    <Compile Include="Migrations\202204231524039_InitialCreate.cs" />
+    <Compile Include="Migrations\202204231524039_InitialCreate.designer.cs">
+      <DependentUpon>202204231524039_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204270940226_AlteredIMDBRating.cs" />
+    <Compile Include="Migrations\202204270940226_AlteredIMDBRating.designer.cs">
+      <DependentUpon>202204270940226_AlteredIMDBRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MovieManager.cs" />
     <Compile Include="test.cs" />
     <Page Include="AddMovie.xaml">
@@ -152,6 +161,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202204231524039_InitialCreate.resx">
+      <DependentUpon>202204231524039_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204270940226_AlteredIMDBRating.resx">
+      <DependentUpon>202204270940226_AlteredIMDBRating.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
