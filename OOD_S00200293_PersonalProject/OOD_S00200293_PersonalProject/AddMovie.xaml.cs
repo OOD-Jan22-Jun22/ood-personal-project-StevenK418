@@ -52,5 +52,40 @@ namespace OOD_S00200293_PersonalProject
             //Clear the placeholder text from the textbox
             box.Clear();
         }
+
+        private void TBX_TitleInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        private void TBX_YearInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        private void TBX_DirectorInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        private void TBX_PlotInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        private void TBX_IMDBRatingInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        private void TBX_RatedInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        private void TBX_PosterInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
     }
 }
