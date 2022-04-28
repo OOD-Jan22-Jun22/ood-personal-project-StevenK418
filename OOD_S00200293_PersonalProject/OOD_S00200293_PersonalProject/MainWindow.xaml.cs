@@ -34,7 +34,6 @@ namespace OOD_S00200293_PersonalProject
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            //SearchMoviesByTitle("Lion");
         }
 
         /// <summary>
@@ -51,13 +50,17 @@ namespace OOD_S00200293_PersonalProject
             TBLK_IMDBRating.Text = movie.imdbRating;
             TBLK_PEGI.Text = movie.Rated;
 
-            //Update the image
-            BitmapImage coverArt = new BitmapImage();
-            coverArt.BeginInit();
-            coverArt.UriSource = new Uri(movie.Poster);
-            coverArt.EndInit();
-            IMG_CoverArt.Stretch = Stretch.Fill;
-            IMG_CoverArt.Source = coverArt;
+            //Check if API returns a valid image URL before asigning to image
+            if (movie.Poster != "N/A")
+            {
+                //Update the image
+                BitmapImage coverArt = new BitmapImage();
+                coverArt.BeginInit();
+                coverArt.UriSource = new Uri(movie.Poster);
+                coverArt.EndInit();
+                IMG_CoverArt.Stretch = Stretch.Fill;
+                IMG_CoverArt.Source = coverArt;
+            }
         }
 
         /// <summary>
@@ -66,12 +69,16 @@ namespace OOD_S00200293_PersonalProject
         /// <param name="title"></param>
         public void SearchMoviesByTitle(string title)
         {
-
             List<Movie> movies = new List<Movie>();
             
-            if (RDBTN_API.IsChecked == true)
+            if (RDBTN_API.IsChecked == true && CHKBX_TitleOnly.IsChecked == false)
             { 
                 //Get a single result set from the API
+                movies = APIManager.Instance.SearchMovies(title);
+            }
+            else if (RDBTN_API.IsChecked == true && CHKBX_TitleOnly.IsChecked == true)
+            {
+                //Get a single result from the api
                 movies.Add(APIManager.Instance.SearchMoviesByTitleOnly(title));
             }
             else
@@ -80,43 +87,25 @@ namespace OOD_S00200293_PersonalProject
                 movies = DatabaseManager.Instance.SearchMovies(title);
             }
 
+            //movies.Sort();
+
             LBX_Movies.ItemsSource = movies;
             
+            //Update the UI fields with data about first movie returned
             UpdateUI(movies[0]);
-        }
-
-        /// <summary>
-        /// Searches for a movie by a given title. 
-        /// </summary>
-        /// <param name="title"></param>
-        public void SearchMovieByTitle(string title)
-        {
-            string baseUrl = "http://www.omdbapi.com/?apikey=";
-            string APIKey = "5d4bd3b3";
-            string titleSearchQuery = "&t=";
-            string searchValue = title;
-            string plotStatus = "&plot=full";
-
-            APIManager manager = new APIManager();
-
-            manager.endPoint = baseUrl + APIKey + titleSearchQuery + searchValue + plotStatus;
-
-            string response = string.Empty;
-            response = manager.MakeRequest();
-
-            Movie movie = manager.ProcessDataRecord(response);
-            UpdateUI(movie);
         }
 
         private void LBX_Movies_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Movie selectedMovie = (Movie) LBX_Movies.SelectedItem;
+           
             if (selectedMovie != null)
             {
-                SearchMovieByTitle(selectedMovie.Title);
+               selectedMovie = APIManager.Instance.SearchMoviesByTitleOnly(selectedMovie.Title);
             }
-        }
 
+            UpdateUI(selectedMovie);
+        }
 
         private void BTN_SearchMovie_Click(object sender, RoutedEventArgs e)
         {
@@ -135,5 +124,20 @@ namespace OOD_S00200293_PersonalProject
             addMovieWindow.Show();
         }
 
+        private void BTN_Random_Click(object sender, RoutedEventArgs e)
+        {
+            Movie movie = (Movie)LBX_Movies.SelectedItem;
+            
+            MovieManager.Instance.AddMovieToDatabase
+            (
+                movie.Title,
+                movie.Year, 
+                movie.imdbRating, 
+                movie.Poster,
+                movie.Plot, 
+                movie.Rated, 
+                movie.Director
+            );
+        }
     }
 }

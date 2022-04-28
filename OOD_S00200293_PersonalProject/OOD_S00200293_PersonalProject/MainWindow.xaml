@@ -13,14 +13,14 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!--Column 1-->
-        <ListBox x:Name="LBX_Movies" Style="{StaticResource MaterialDesignChoiceChipPrimaryListBox}" HorizontalAlignment="Left" Height="162" Margin="10,128,0,0" VerticalAlignment="Top" Width="308" Grid.Column="0" SelectionChanged="LBX_Movies_SelectionChanged" SelectedIndex="0"/>
+        <ListBox x:Name="LBX_Movies" Style="{StaticResource MaterialDesignChoiceChipPrimaryListBox}" HorizontalAlignment="Left" Height="144" Margin="10,146,0,0" VerticalAlignment="Top" Width="308" Grid.Column="0" SelectionChanged="LBX_Movies_SelectionChanged" SelectedIndex="0"/>
         <TextBox x:Name="TBX_Search" Style="{StaticResource MaterialDesignTextBoxBase}" HorizontalAlignment="Left" Height="31" Margin="10,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="308" Grid.Column="0"/>
         <Label Content="Movie Database" Style="{StaticResource MaterialDesignLabel}" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Width="300" Height="41" Grid.Column="0" FontSize="24" />
         <RadioButton x:Name="RDBTN_All" Content="All" GroupName="Category_filter" HorizontalAlignment="Left" Margin="23,304,0,0" Grid.Column="0" VerticalAlignment="Top"/>
         <RadioButton x:Name="RDBTN_ReleaseDate" Content="Release Date" GroupName="Category_filter" HorizontalAlignment="Left" Margin="111,302,0,0" Grid.Column="0" VerticalAlignment="Top"/>
         <RadioButton x:Name="RDBTN_Publisher" Content="Publisher" GroupName="Category_filter" HorizontalAlignment="Left" Margin="23,327,0,0" Grid.Column="0" VerticalAlignment="Top"/>
         <RadioButton x:Name="RDBTN_ESRB" Content="Rating" GroupName="Category_filter" HorizontalAlignment="Left" Margin="111,327,0,0" Grid.Column="0" VerticalAlignment="Top"/>
-        <Button x:Name="BTN_Random" Style="{StaticResource MaterialDesignPaperButton}" Content="Random" HorizontalAlignment="Left" Margin="23,366,0,0" Grid.Column="0" VerticalAlignment="Top" Width="101" Height="28"/>
+        <Button x:Name="BTN_Random" Style="{StaticResource MaterialDesignPaperButton}" Content="Add to DB" HorizontalAlignment="Left" Margin="23,366,0,0" Grid.Column="0" VerticalAlignment="Top" Width="101" Height="28" Click="BTN_Random_Click"/>
         <Button x:Name="BTN_AddNew" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Add New Game" HorizontalAlignment="Left" Margin="148,366,0,0" Grid.Column="0" VerticalAlignment="Top" Width="92" Height="29" Click="BTN_AddNew_Click"/>
         <Image x:Name="IMG_CoverArt" HorizontalAlignment="Left" Height="108" Margin="28,38,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="76" Source="CallofDutycover.jpg"/>
         <!--Column 2-->
@@ -39,5 +39,6 @@
         <RadioButton x:Name="RDBTN_API" GroupName="Search_Source_Selection" Content="API" HorizontalAlignment="Left" Margin="182,100,0,0"  Grid.Column="0" VerticalAlignment="Top" IsChecked="True"/>
         <RadioButton x:Name="RDBTN_Database" GroupName="Search_Source_Selection" Content="Database" HorizontalAlignment="Left" Margin="247,100,0,0" Grid.Column="0" VerticalAlignment="Top"/>
         <Label Style="{StaticResource MaterialDesignLabel}" Content="Source:" HorizontalAlignment="Left" Margin="130,96,0,0" Grid.Column="0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="CHKBX_TitleOnly" Content="Title Only" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
