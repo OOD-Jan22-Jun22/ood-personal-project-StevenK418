@@ -70,37 +70,54 @@ namespace OOD_S00200293_PersonalProject
         /// Searches for movies with a given title or keyword
         /// </summary>
         /// <param name="title"></param>
-        public void SearchMovies(string title)
+        public void SearchMovies(string value)
         {
             List<Movie> movies = new List<Movie>();
-            
-            if (RDBTN_API.IsChecked == true && CHKBX_TitleOnly.IsChecked == false)
-            { 
-                //Get a single result set from the API
-                movies = APIManager.Instance.SearchMovies(title);
-            }
-            else if (RDBTN_API.IsChecked == true && CHKBX_TitleOnly.IsChecked == true)
+
+            //Check if input is a string or a number first
+            int parseResult = 0;
+            if (int.TryParse(value, out parseResult) == false)
             {
-                //Get a single result from the api
-                movies.Add(APIManager.Instance.SearchMoviesByTitleOnly(title));
+                if (RDBTN_API.IsChecked == true && CHKBX_TitleOnly.IsChecked == false)
+                {
+                    //Get a single result set from the API
+                    movies = APIManager.Instance.SearchMovies(value);
+                }
+                else if (RDBTN_API.IsChecked == true && CHKBX_TitleOnly.IsChecked == true)
+                {
+                    //Get a single result from the api
+                    movies.Add(APIManager.Instance.SearchMoviesByTitleOnly(value));
+                }
+                else if (RDBTN_Database.IsChecked == true && CHKBX_TitleOnly.IsChecked == false)
+                {
+                    //Get a Result set from the database
+                    movies = DatabaseManager.Instance.SearchMoviesByKeyword(value);
+                }
+                else if (RDBTN_Database.IsChecked == true && CHKBX_TitleOnly.IsChecked == true)
+                {
+                    //Get a Result set from the database
+                    movies = DatabaseManager.Instance.SearchMoviesByTitle(value);
+                }
             }
-            else if(RDBTN_Database.IsChecked == true && CHKBX_TitleOnly.IsChecked == false)
+            else
             {
-                //Get a Result set from the database
-                movies = DatabaseManager.Instance.SearchMoviesByKeyword(title);
-            }
-            else if (RDBTN_Database.IsChecked == true && CHKBX_TitleOnly.IsChecked == true)
-            {
-                //Get a Result set from the database
-                movies = DatabaseManager.Instance.SearchMoviesByTitle(title);
+                if (RDBTN_Database.IsChecked == true)
+                {
+                    //Search the db for the given year
+                    movies = DatabaseManager.Instance.SearchMoviesByYear(value);
+                }
             }
 
             //movies.Sort();
 
             LBX_Movies.ItemsSource = movies;
-            
-            //Update the UI fields with data about first movie returned
-            UpdateUI(movies[0]);
+
+            //Ensure we have results before passing to UpdateUI
+            if (movies.Count > 0)
+            {
+                //Update the UI fields with data about first movie returned
+                UpdateUI(movies[0]);
+            }
         }
 
         private void LBX_Movies_SelectionChanged(object sender, SelectionChangedEventArgs e)

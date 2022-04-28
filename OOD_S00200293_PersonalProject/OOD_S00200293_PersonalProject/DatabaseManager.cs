@@ -85,5 +85,37 @@ namespace OOD_S00200293_PersonalProject
             //Convert the results to a list and return
             return query.ToList();
         }
+
+        /// <summary>
+        /// Searches the db for movies of a given year. 
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns>Returns a list of all movies matching the result.</returns>
+        public List<Movie> SearchMoviesByYear(string year)
+        {
+            //Query the database for the given year and return the results
+            var query = from m in db.Movies
+                where m.Year.Equals(year)
+                select m;
+
+            //Convert the results to a list and return
+            return query.ToList();
+        }
+
+        /// <summary>
+        /// Searches the db for movies of a given Director. 
+        /// </summary>
+        /// <param name="director"></param>
+        /// <returns>Returns a list of all movies matching the result.</returns>
+        public List<Movie> SearchMoviesByDirector(string director)
+        {
+            //Query the database for the given year and return the results
+            var query = from m in db.Movies
+                where m.Director.Equals(director)
+                select m;
+
+            //Convert the results to a list and return
+            return query.ToList();
+        }
     }
 }
