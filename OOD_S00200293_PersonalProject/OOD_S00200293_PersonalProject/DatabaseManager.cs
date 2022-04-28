@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,13 +55,35 @@ namespace OOD_S00200293_PersonalProject
         }
 
         /// <summary>
-        /// Searches for movies with a given title or keyword
+        ///  Searches DB for movies with a given title.
         /// </summary>
         /// <param name="title"></param>
-        public List<Movie> SearchMovies(string title)
+        /// <returns>Returns a list of movies matching the title</returns>
+        public List<Movie> SearchMoviesByTitle(string title)
         {
-            return null;
+            //Query the database for the given title and return the results
+            var query = from m in db.Movies
+                where m.Title.Equals(title)
+                select m;
 
+            //Convert the results to a list and return
+            return query.ToList();
+        }
+
+        /// <summary>
+        ///  Searches DB for movies with a given keyword.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns>Returns a list of movies matching the title</returns>
+        public List<Movie> SearchMoviesByKeyword(string keyword)
+        {
+            //Query the database for the given title and return the results
+            var query = from m in db.Movies
+                where m.Title.Contains(keyword)
+                select m;
+
+            //Convert the results to a list and return
+            return query.ToList();
         }
     }
 }

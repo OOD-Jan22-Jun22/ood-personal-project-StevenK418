@@ -42,24 +42,27 @@ namespace OOD_S00200293_PersonalProject
         /// <param name="game"></param>
         private void UpdateUI(Movie movie)
         {
-            //Update all the text fields
-            TBLK_Title.Text = movie.Title;
-            TBLK_Description.Text = movie.Plot;
-            TBLK_Director.Text = movie.Director;
-            TBLK_ReleaseDate.Text = movie.Year;
-            TBLK_IMDBRating.Text = movie.imdbRating;
-            TBLK_PEGI.Text = movie.Rated;
-
-            //Check if API returns a valid image URL before asigning to image
-            if (movie.Poster != "N/A")
+            if (movie != null)
             {
-                //Update the image
-                BitmapImage coverArt = new BitmapImage();
-                coverArt.BeginInit();
-                coverArt.UriSource = new Uri(movie.Poster);
-                coverArt.EndInit();
-                IMG_CoverArt.Stretch = Stretch.Fill;
-                IMG_CoverArt.Source = coverArt;
+                //Update all the text fields
+                TBLK_Title.Text = movie.Title;
+                TBLK_Description.Text = movie.Plot;
+                TBLK_Director.Text = movie.Director;
+                TBLK_ReleaseDate.Text = movie.Year;
+                TBLK_IMDBRating.Text = movie.imdbRating;
+                TBLK_PEGI.Text = movie.Rated;
+
+                //Check if API returns a valid image URL before asigning to image
+                if (movie.Poster != "N/A")
+                {
+                    //Update the image
+                    BitmapImage coverArt = new BitmapImage();
+                    coverArt.BeginInit();
+                    coverArt.UriSource = new Uri(movie.Poster);
+                    coverArt.EndInit();
+                    IMG_CoverArt.Stretch = Stretch.Fill;
+                    IMG_CoverArt.Source = coverArt;
+                }
             }
         }
 
@@ -67,7 +70,7 @@ namespace OOD_S00200293_PersonalProject
         /// Searches for movies with a given title or keyword
         /// </summary>
         /// <param name="title"></param>
-        public void SearchMoviesByTitle(string title)
+        public void SearchMovies(string title)
         {
             List<Movie> movies = new List<Movie>();
             
@@ -81,10 +84,15 @@ namespace OOD_S00200293_PersonalProject
                 //Get a single result from the api
                 movies.Add(APIManager.Instance.SearchMoviesByTitleOnly(title));
             }
-            else
+            else if(RDBTN_Database.IsChecked == true && CHKBX_TitleOnly.IsChecked == false)
             {
                 //Get a Result set from the database
-                movies = DatabaseManager.Instance.SearchMovies(title);
+                movies = DatabaseManager.Instance.SearchMoviesByKeyword(title);
+            }
+            else if (RDBTN_Database.IsChecked == true && CHKBX_TitleOnly.IsChecked == true)
+            {
+                //Get a Result set from the database
+                movies = DatabaseManager.Instance.SearchMoviesByTitle(title);
             }
 
             //movies.Sort();
@@ -109,10 +117,14 @@ namespace OOD_S00200293_PersonalProject
 
         private void BTN_SearchMovie_Click(object sender, RoutedEventArgs e)
         {
+            //Get the value entered in the search box
             string value = TBX_Search.Text;
+
+            //Ensure the value entered is not null or empty string
             if (value != null && value != "")
             {
-                SearchMoviesByTitle(value);
+                //Search for the value entered
+                SearchMovies(value);
             }
         }
 
