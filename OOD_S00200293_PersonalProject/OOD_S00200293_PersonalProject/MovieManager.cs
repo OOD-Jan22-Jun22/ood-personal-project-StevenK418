@@ -42,16 +42,11 @@ namespace OOD_S00200293_PersonalProject
         /// <param name="director"></param>
         public void AddMovieToDatabase(string title, string year, string imdbRating, string posterURL, string plot, string rated, string director)
         {
-            //Get the current number of rows in the database
-            int numberOfRows = DatabaseManager.db.Movies.Count();
-
-            //Increment the number of rows by one to get the id of the new movie
-            numberOfRows++;
-
             //Construct a new movie object
             Movie movie = new Movie()
             {
-                MovieID = numberOfRows.ToString(),
+                //Added a guid as an id to ensure unique value
+                MovieID = Guid.NewGuid().ToString().Substring(0,8),
                 Title = title,
                 Year = year,
                 imdbRating = imdbRating,

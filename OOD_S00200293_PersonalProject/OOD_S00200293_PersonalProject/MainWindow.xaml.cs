@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Name:   Steven Kelly
+ * ID:     S00200293
+ * 
+ *
+ *
+ */
+
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -33,7 +42,6 @@ namespace OOD_S00200293_PersonalProject
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
 
         /// <summary>
@@ -115,6 +123,8 @@ namespace OOD_S00200293_PersonalProject
             //Ensure we have results before passing to UpdateUI
             if (movies.Count > 0)
             {
+                //Set the selected item in the listbox to the first result returned
+                LBX_Movies.SelectedItem = movies[0];
                 //Update the UI fields with data about first movie returned
                 UpdateUI(movies[0]);
             }
