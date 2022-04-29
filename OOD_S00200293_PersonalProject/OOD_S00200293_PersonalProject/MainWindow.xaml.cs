@@ -126,8 +126,6 @@ namespace OOD_S00200293_PersonalProject
                     tempMovies.Add(APIManager.Instance.SearchMoviesByTitleOnly(movie.Title));
                 }
 
-               
-
                 LBX_Movies.ItemsSource = tempMovies;
             }
             else
@@ -142,8 +140,8 @@ namespace OOD_S00200293_PersonalProject
                 SortMoviesByTitle((List<Movie>)LBX_Movies.ItemsSource);
 
                 //Set the selected item in the listbox to the first result returned
-                LBX_Movies.SelectedItem = 0;
-                
+                LBX_Movies.SelectedIndex = 0;
+
                 //Update the UI fields with data about first movie returned
                 UpdateUI((Movie)LBX_Movies.SelectedItem);
             }
@@ -273,6 +271,7 @@ namespace OOD_S00200293_PersonalProject
                 select m;
 
                 LBX_Movies.ItemsSource = sortedList.ToList();
+                LBX_Movies.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -286,6 +285,7 @@ namespace OOD_S00200293_PersonalProject
                 select m;
 
             LBX_Movies.ItemsSource = sortedList.ToList();
+            LBX_Movies.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -299,6 +299,7 @@ namespace OOD_S00200293_PersonalProject
                 select m;
 
             LBX_Movies.ItemsSource = sortedList.ToList();
+            LBX_Movies.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -312,6 +313,7 @@ namespace OOD_S00200293_PersonalProject
                 select m;
 
             LBX_Movies.ItemsSource = sortedList.ToList();
+            LBX_Movies.SelectedIndex = 0;
         }
     }
 }
