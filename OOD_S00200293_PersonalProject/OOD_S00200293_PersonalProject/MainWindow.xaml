@@ -16,11 +16,11 @@
         <ListBox x:Name="LBX_Movies" Style="{StaticResource MaterialDesignChoiceChipPrimaryListBox}" HorizontalAlignment="Left" Height="144" Margin="10,146,0,0" VerticalAlignment="Top" Width="308" Grid.Column="0" SelectionChanged="LBX_Movies_SelectionChanged" SelectedIndex="0"/>
         <TextBox x:Name="TBX_Search" Style="{StaticResource MaterialDesignTextBoxBase}" HorizontalAlignment="Left" Height="31" Margin="10,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="308" Grid.Column="0"/>
         <Label Content="Movie Database" Style="{StaticResource MaterialDesignLabel}" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Width="300" Height="41" Grid.Column="0" FontSize="24" />
-        <RadioButton x:Name="RDBTN_All" Content="All" GroupName="Category_filter" HorizontalAlignment="Left" Margin="23,304,0,0" Grid.Column="0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="RDBTN_ReleaseDate" Content="Release Date" GroupName="Category_filter" HorizontalAlignment="Left" Margin="111,302,0,0" Grid.Column="0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="RDBTN_Publisher" Content="Publisher" GroupName="Category_filter" HorizontalAlignment="Left" Margin="23,327,0,0" Grid.Column="0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="RDBTN_ESRB" Content="Rating" GroupName="Category_filter" HorizontalAlignment="Left" Margin="111,327,0,0" Grid.Column="0" VerticalAlignment="Top"/>
-        <Button x:Name="BTN_Random" Style="{StaticResource MaterialDesignPaperButton}" Content="Add to DB" HorizontalAlignment="Left" Margin="23,366,0,0" Grid.Column="0" VerticalAlignment="Top" Width="101" Height="28" Click="BTN_Random_Click"/>
+        <RadioButton x:Name="RDBTN_All" Content="All" GroupName="Category_filter" HorizontalAlignment="Left" Margin="23,304,0,0" Grid.Column="0" VerticalAlignment="Top" IsChecked="True" Checked="RDBTN_All_Checked"/>
+        <RadioButton x:Name="RDBTN_ReleaseDate" Content="Year" GroupName="Category_filter" HorizontalAlignment="Left" Margin="111,302,0,0" Grid.Column="0" VerticalAlignment="Top" Checked="RDBTN_ReleaseDate_Checked"/>
+        <RadioButton x:Name="RDBTN_Publisher" Content="Director" GroupName="Category_filter" HorizontalAlignment="Left" Margin="23,327,0,0" Grid.Column="0" VerticalAlignment="Top" Checked="RDBTN_Publisher_Checked"/>
+        <RadioButton x:Name="RDBTN_Rating" Content="Rating" GroupName="Category_filter" HorizontalAlignment="Left" Margin="111,327,0,0" Grid.Column="0" VerticalAlignment="Top" Checked="RDBTN_Rating_Checked"/>
+        <Button x:Name="BTN_DBAddMovie" Style="{StaticResource MaterialDesignPaperButton}" Content="Add to DB" HorizontalAlignment="Left" Margin="23,366,0,0" Grid.Column="0" VerticalAlignment="Top" Width="101" Height="28" Click="BTN_DBAddMovie_Click"/>
         <Button x:Name="BTN_AddNew" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Add New Game" HorizontalAlignment="Left" Margin="148,366,0,0" Grid.Column="0" VerticalAlignment="Top" Width="92" Height="29" Click="BTN_AddNew_Click"/>
         <Image x:Name="IMG_CoverArt" HorizontalAlignment="Left" Height="108" Margin="28,38,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="76" Source="CallofDutycover.jpg"/>
         <!--Column 2-->

@@ -116,7 +116,6 @@ namespace OOD_S00200293_PersonalProject
                 }
             }
 
-            //movies.Sort();
 
             //If using api, get each individual movie record using the title and store as list
             if (RDBTN_API.IsChecked == true)
@@ -126,6 +125,8 @@ namespace OOD_S00200293_PersonalProject
                 {
                     tempMovies.Add(APIManager.Instance.SearchMoviesByTitleOnly(movie.Title));
                 }
+
+               
 
                 LBX_Movies.ItemsSource = tempMovies;
             }
@@ -137,6 +138,9 @@ namespace OOD_S00200293_PersonalProject
             //Ensure we have results before passing to UpdateUI
             if (movies.Count > 0)
             {
+                //Sort by title by default
+                SortMoviesByTitle((List<Movie>)LBX_Movies.ItemsSource);
+
                 //Set the selected item in the listbox to the first result returned
                 LBX_Movies.SelectedItem = 0;
                 
@@ -178,30 +182,136 @@ namespace OOD_S00200293_PersonalProject
             addMovieWindow.Show();
         }
 
-        private void BTN_Random_Click(object sender, RoutedEventArgs e)
+        private void BTN_DBAddMovie_Click(object sender, RoutedEventArgs e)
         {
             Movie movie = (Movie)LBX_Movies.SelectedItem;
-            
+
             MovieManager.Instance.AddMovieToDatabase
             (
                 movie.Title,
-                movie.Year, 
-                movie.imdbRating, 
+                movie.Year,
+                movie.imdbRating,
                 movie.Poster,
-                movie.Plot, 
-                movie.Rated, 
+                movie.Plot,
+                movie.Rated,
                 movie.Director
             );
         }
 
         private void RDBTN_Database_Checked(object sender, RoutedEventArgs e)
         {
-            BTN_Random.IsEnabled = false;
+            BTN_DBAddMovie.IsEnabled = false;
         }
 
         private void RDBTN_API_Checked(object sender, RoutedEventArgs e)
         {
-            BTN_Random.IsEnabled = true;
+            BTN_DBAddMovie.IsEnabled = true;
+        }
+
+        //Sort Event handlers
+        /// <summary>
+        /// Rating sort event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RDBTN_Rating_Checked(object sender, RoutedEventArgs e)
+        {
+            if (LBX_Movies.ItemsSource != null)
+            {
+                SortMoviesByRating((List<Movie>) LBX_Movies.ItemsSource);
+            }
+        }
+
+        /// <summary>
+        /// Release Year sort event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RDBTN_ReleaseDate_Checked(object sender, RoutedEventArgs e)
+        {
+            if (LBX_Movies.ItemsSource != null)
+            {
+                SortMoviesByYear((List<Movie>) LBX_Movies.ItemsSource);
+            }
+        }
+
+        /// <summary>
+        /// Director sort event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RDBTN_Publisher_Checked(object sender, RoutedEventArgs e)
+        {
+            if (LBX_Movies.ItemsSource != null)
+            {
+                SortMoviesByDirector((List<Movie>) LBX_Movies.ItemsSource);
+            }
+        }
+
+        /// <summary>
+        /// Title sort event handler (default)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RDBTN_All_Checked(object sender, RoutedEventArgs e)
+        {
+            if (LBX_Movies.ItemsSource != null)
+            {
+                SortMoviesByTitle((List<Movie>)LBX_Movies.ItemsSource);
+            }
+        }
+
+        //Sort methods
+        /// <summary>
+        /// Sorts the movies displayed by year
+        /// </summary>
+        /// <param name="movies"></param>
+        private void SortMoviesByYear(List<Movie> movies)
+        {
+            var sortedList = from m in movies
+                orderby m.Year
+                select m;
+
+                LBX_Movies.ItemsSource = sortedList.ToList();
+        }
+
+        /// <summary>
+        /// Sorts the movies displayed by Director
+        /// </summary>
+        /// <param name="movies"></param>
+        private void SortMoviesByDirector(List<Movie> movies)
+        {
+            var sortedList = from m in movies
+                orderby m.Director
+                select m;
+
+            LBX_Movies.ItemsSource = sortedList.ToList();
+        }
+
+        /// <summary>
+        /// Sorts the movies displayed by year
+        /// </summary>
+        /// <param name="movies"></param>
+        private void SortMoviesByRating(List<Movie> movies)
+        {
+            var sortedList = from m in movies
+                orderby m.Rated
+                select m;
+
+            LBX_Movies.ItemsSource = sortedList.ToList();
+        }
+
+        /// <summary>
+        /// Sorts the movies displayed by Title
+        /// </summary>
+        /// <param name="movies"></param>
+        private void SortMoviesByTitle(List<Movie> movies)
+        {
+            var sortedList = from m in movies
+                orderby m.Title
+                select m;
+
+            LBX_Movies.ItemsSource = sortedList.ToList();
         }
     }
 }

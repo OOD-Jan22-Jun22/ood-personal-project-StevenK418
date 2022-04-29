@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace OOD_S00200293_PersonalProject
 {
-    public class Movie: IComparable<Movie>
+    public class Movie
     {
         public string MovieID { get; set; }
         public string Title { get; set; }
@@ -18,29 +18,6 @@ namespace OOD_S00200293_PersonalProject
         public string Plot { get; set; }
         public string Rated { get; set; }
         public string Director { get; set; }
-
-
-        //TODO: THIS NEEDS WORK BEFORE PUSHING
-        public int CompareTo(Movie obj)
-        {
-            int result = 0;
-            if (obj.Rated != null)
-            {
-                if (double.Parse(Rated) > double.Parse(obj.Rated))
-                {
-                    result = -1;
-                }
-                else if (double.Parse(Rated) == double.Parse(obj.Rated))
-                {
-                    result = 0;
-                }
-                else if (double.Parse(Rated) < double.Parse(obj.Rated))
-                {
-                    result = 1;
-                }
-            }
-            return result;
-        }
 
         /// <summary>
         /// Overrides the ToString method of the parent Object class.
