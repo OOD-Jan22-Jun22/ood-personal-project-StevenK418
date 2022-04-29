@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Name:              Steven Kelly
+ * ID:                S00200293
+ * Project:           Object Oriented Development - Personal Project
+ * Github repository: https://github.com/OOD-Jan22-Jun22/ood-personal-project-StevenK418.git
+ * Developer notes: Database is codefirst and should be created locally when adding movies.
+ *
+ */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -33,8 +41,6 @@ namespace OOD_S00200293_PersonalProject
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            //SearchMoviesByTitle("Lion");
         }
 
         /// <summary>
@@ -43,87 +49,125 @@ namespace OOD_S00200293_PersonalProject
         /// <param name="game"></param>
         private void UpdateUI(Movie movie)
         {
-            //Update all the text fields
-            TBLK_Title.Text = movie.Title;
-            TBLK_Description.Text = movie.Plot;
-            TBLK_Director.Text = movie.Director;
-            TBLK_ReleaseDate.Text = movie.Year;
-            TBLK_IMDBRating.Text = movie.ImbdRating;
-            TBLK_PEGI.Text = movie.Rated;
+            if (movie != null)
+            {
+                //Update all the text fields
+                TBLK_Title.Text = movie.Title;
+                TBLK_Description.Text = movie.Plot;
+                TBLK_Director.Text = movie.Director;
+                TBLK_ReleaseDate.Text = movie.Year;
+                TBLK_IMDBRating.Text = movie.imdbRating;
+                TBLK_PEGI.Text = movie.Rated;
 
-            //Update the image
-            BitmapImage coverArt = new BitmapImage();
-            coverArt.BeginInit();
-            coverArt.UriSource = new Uri(movie.Poster);
-            coverArt.EndInit();
-            IMG_CoverArt.Stretch = Stretch.Fill;
-            IMG_CoverArt.Source = coverArt;
+                //Check if API returns a valid image URL before asigning to image
+                if (movie.Poster != "N/A")
+                {
+                    //Update the image
+                    BitmapImage coverArt = new BitmapImage();
+                    coverArt.BeginInit();
+                    coverArt.UriSource = new Uri(movie.Poster);
+                    coverArt.EndInit();
+                    IMG_CoverArt.Stretch = Stretch.Fill;
+                    IMG_CoverArt.Source = coverArt;
+                }
+            }
         }
 
         /// <summary>
         /// Searches for movies with a given title or keyword
         /// </summary>
         /// <param name="title"></param>
-        public void SearchMoviesByTitle(string title)
+        public void SearchMovies(string value)
         {
-            string baseUrl = "http://www.omdbapi.com/?apikey=";
-            string APIKey = "5d4bd3b3";
-            string searchQueryPrefix = "&s=";
-            string searchValue = title;
-            
-            APIManager manager = new APIManager();
+            List<Movie> movies = new List<Movie>();
 
-            manager.endPoint = baseUrl + APIKey + searchQueryPrefix + title;
+            //Check if input is a string or a number first
+            int parseResult = 0;
+            if (int.TryParse(value, out parseResult) == false)
+            {
+                if (RDBTN_API.IsChecked == true && CHKBX_TitleOnly.IsChecked == false)
+                {
+                    //Get a single result set from the API
+                    movies = APIManager.Instance.SearchMovies(value);
+                }
+                else if (RDBTN_API.IsChecked == true && CHKBX_TitleOnly.IsChecked == true)
+                {
+                    //Get a single result from the api
+                    movies.Add(APIManager.Instance.SearchMoviesByTitleOnly(value));
+                }
+                else if (RDBTN_Database.IsChecked == true && CHKBX_TitleOnly.IsChecked == false)
+                {
+                    //Get a Result set from the database
+                    movies = DatabaseManager.Instance.SearchMoviesByKeyword(value);
+                }
+                else if (RDBTN_Database.IsChecked == true && CHKBX_TitleOnly.IsChecked == true)
+                {
+                    //Get a Result set from the database
+                    movies = DatabaseManager.Instance.SearchMoviesByTitle(value);
+                }
+            }
+            else
+            {
+                if (RDBTN_Database.IsChecked == true)
+                {
+                    //Search the db for the given year
+                    movies = DatabaseManager.Instance.SearchMoviesByYear(value);
+                }
+            }
 
-            string response = string.Empty;
-            response = manager.MakeRequest();
 
-            List<Movie> movies = (List<Movie>)manager.ProcessDataRecords(response);
+            //If using api, get each individual movie record using the title and store as list
+            if (RDBTN_API.IsChecked == true)
+            {
+                List<Movie> tempMovies = new List<Movie>();
+                foreach (Movie movie in movies)
+                {
+                    tempMovies.Add(APIManager.Instance.SearchMoviesByTitleOnly(movie.Title));
+                }
 
-            LBX_Movies.ItemsSource = movies;
-            
-            UpdateUI(movies[0]);
-        }
+                LBX_Movies.ItemsSource = tempMovies;
+            }
+            else
+            {
+                LBX_Movies.ItemsSource = movies;
+            }
 
-        /// <summary>
-        /// Searches for a movie by a given title. 
-        /// </summary>
-        /// <param name="title"></param>
-        public void SearchMovieByTitle(string title)
-        {
-            string baseUrl = "http://www.omdbapi.com/?apikey=";
-            string APIKey = "5d4bd3b3";
-            string titleSearchQuery = "&t=";
-            string searchValue = title;
-            string plotStatus = "&plot=full";
+            //Ensure we have results before passing to UpdateUI
+            if (movies.Count > 0)
+            {
+                //Sort by title by default
+                SortMoviesByTitle((List<Movie>)LBX_Movies.ItemsSource);
 
-            APIManager manager = new APIManager();
+                //Set the selected item in the listbox to the first result returned
+                LBX_Movies.SelectedIndex = 0;
 
-            manager.endPoint = baseUrl + APIKey + titleSearchQuery + searchValue + plotStatus;
-
-            string response = string.Empty;
-            response = manager.MakeRequest();
-
-            Movie movie = manager.ProcessDataRecord(response);
-            UpdateUI(movie);
+                //Update the UI fields with data about first movie returned
+                UpdateUI((Movie)LBX_Movies.SelectedItem);
+            }
         }
 
         private void LBX_Movies_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Movie selectedMovie = (Movie) LBX_Movies.SelectedItem;
+           
             if (selectedMovie != null)
             {
-                SearchMovieByTitle(selectedMovie.Title);
+               selectedMovie = APIManager.Instance.SearchMoviesByTitleOnly(selectedMovie.Title);
             }
-        }
 
+            UpdateUI(selectedMovie);
+        }
 
         private void BTN_SearchMovie_Click(object sender, RoutedEventArgs e)
         {
+            //Get the value entered in the search box
             string value = TBX_Search.Text;
+
+            //Ensure the value entered is not null or empty string
             if (value != null && value != "")
             {
-                SearchMoviesByTitle(value);
+                //Search for the value entered
+                SearchMovies(value);
             }
         }
 
@@ -135,5 +179,140 @@ namespace OOD_S00200293_PersonalProject
             addMovieWindow.Show();
         }
 
+        private void BTN_DBAddMovie_Click(object sender, RoutedEventArgs e)
+        {
+            Movie movie = (Movie)LBX_Movies.SelectedItem;
+
+            MovieManager.Instance.AddMovieToDatabase
+            (
+                movie.Title,
+                movie.Year,
+                movie.imdbRating,
+                movie.Poster,
+                movie.Plot,
+                movie.Rated,
+                movie.Director
+            );
+        }
+
+        private void RDBTN_Database_Checked(object sender, RoutedEventArgs e)
+        {
+            BTN_DBAddMovie.IsEnabled = false;
+        }
+
+        private void RDBTN_API_Checked(object sender, RoutedEventArgs e)
+        {
+            BTN_DBAddMovie.IsEnabled = true;
+        }
+
+        //Sort Event handlers
+        /// <summary>
+        /// Rating sort event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RDBTN_Rating_Checked(object sender, RoutedEventArgs e)
+        {
+            if (LBX_Movies.ItemsSource != null)
+            {
+                SortMoviesByRating((List<Movie>) LBX_Movies.ItemsSource);
+            }
+        }
+
+        /// <summary>
+        /// Release Year sort event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RDBTN_ReleaseDate_Checked(object sender, RoutedEventArgs e)
+        {
+            if (LBX_Movies.ItemsSource != null)
+            {
+                SortMoviesByYear((List<Movie>) LBX_Movies.ItemsSource);
+            }
+        }
+
+        /// <summary>
+        /// Director sort event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RDBTN_Publisher_Checked(object sender, RoutedEventArgs e)
+        {
+            if (LBX_Movies.ItemsSource != null)
+            {
+                SortMoviesByDirector((List<Movie>) LBX_Movies.ItemsSource);
+            }
+        }
+
+        /// <summary>
+        /// Title sort event handler (default)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RDBTN_All_Checked(object sender, RoutedEventArgs e)
+        {
+            if (LBX_Movies.ItemsSource != null)
+            {
+                SortMoviesByTitle((List<Movie>)LBX_Movies.ItemsSource);
+            }
+        }
+
+        //Sort methods
+        /// <summary>
+        /// Sorts the movies displayed by year
+        /// </summary>
+        /// <param name="movies"></param>
+        private void SortMoviesByYear(List<Movie> movies)
+        {
+            var sortedList = from m in movies
+                orderby m.Year
+                select m;
+
+                LBX_Movies.ItemsSource = sortedList.ToList();
+                LBX_Movies.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Sorts the movies displayed by Director
+        /// </summary>
+        /// <param name="movies"></param>
+        private void SortMoviesByDirector(List<Movie> movies)
+        {
+            var sortedList = from m in movies
+                orderby m.Director
+                select m;
+
+            LBX_Movies.ItemsSource = sortedList.ToList();
+            LBX_Movies.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Sorts the movies displayed by year
+        /// </summary>
+        /// <param name="movies"></param>
+        private void SortMoviesByRating(List<Movie> movies)
+        {
+            var sortedList = from m in movies
+                orderby m.Rated
+                select m;
+
+            LBX_Movies.ItemsSource = sortedList.ToList();
+            LBX_Movies.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Sorts the movies displayed by Title
+        /// </summary>
+        /// <param name="movies"></param>
+        private void SortMoviesByTitle(List<Movie> movies)
+        {
+            var sortedList = from m in movies
+                orderby m.Title
+                select m;
+
+            LBX_Movies.ItemsSource = sortedList.ToList();
+            LBX_Movies.SelectedIndex = 0;
+        }
     }
 }

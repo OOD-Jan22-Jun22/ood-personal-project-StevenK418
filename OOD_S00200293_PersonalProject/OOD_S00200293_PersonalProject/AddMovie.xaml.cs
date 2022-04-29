@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,8 +21,6 @@ namespace OOD_S00200293_PersonalProject
     /// </summary>
     public partial class AddMovie : Window
     {
-        List<Movie> movies = new List<Movie>();
-
         public AddMovie():base()
         {
             InitializeComponent();
@@ -30,48 +29,18 @@ namespace OOD_S00200293_PersonalProject
         private void BTN_AddMovie_Click(object sender, RoutedEventArgs e)
         {
             //Add the movie details to the database
-            AddMovieToDatabase(TBX_TitleInput.Text, TBX_YearInput.Text, TBX_IMDBRatingInput.Text, TBX_PosterInput.Text, TBX_PlotInput.Text, TBX_RatedInput.Text, TBX_DirectorInput.Text);
-        }
-
-        /// <summary>
-        /// Adds a new movie item to the database.
-        /// </summary>
-        /// <param name="title"></param>
-        /// <param name="year"></param>
-        /// <param name="imdbRating"></param>
-        /// <param name="posterURL"></param>
-        /// <param name="plot"></param>
-        /// <param name="rated"></param>
-        /// <param name="director"></param>
-        private void AddMovieToDatabase(string title, string year, string imdbRating, string posterURL, string plot, string rated, string director)
-        {
-            //Get the current number of rows in the database
-            int numberOfRows = DatabaseManager.db.Movies.Count();
-
-            //Increment the number of rows by one to get the id of the new movie
-            numberOfRows++;
-
-            //Construct a new movie object
-            Movie movie = new Movie()
-            {
-                MovieID = numberOfRows.ToString(),
-                Title = title,
-                Year = year,
-                ImbdRating = imdbRating,
-                Poster = posterURL,
-                Plot = plot,
-                Rated = rated,
-                Director = director
-            };
-
-            //Add the movie to the movies collection
-            movies.Add(movie);
-
-            //Add the movies to the database
-            DatabaseManager.AddToDatabase(movies);
-
-            //Clear the movies list
-            movies.Clear();
+            MovieManager.Instance.AddMovieToDatabase
+                                    (
+                                        TBX_TitleInput.Text, 
+                                        TBX_YearInput.Text, 
+                                        TBX_IMDBRatingInput.Text, 
+                                        TBX_PosterInput.Text, 
+                                        TBX_PlotInput.Text, 
+                                        TBX_RatedInput.Text, 
+                                        TBX_DirectorInput.Text
+                                    );
+            //Clear the values in the input fields
+            ClearAllValues();
         }
 
         /// <summary>
@@ -83,6 +52,61 @@ namespace OOD_S00200293_PersonalProject
         {
             //Clear the placeholder text from the textbox
             box.Clear();
+        }
+
+        private void TBX_TitleInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        private void TBX_YearInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        private void TBX_DirectorInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        private void TBX_PlotInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        private void TBX_IMDBRatingInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        private void TBX_RatedInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        private void TBX_PosterInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ClearInputText((TextBox)sender);
+        }
+
+        /// <summary>
+        /// Clears all the fields of values
+        /// </summary>
+        private void ClearAllValues()
+        {
+            List<TextBox> boxes = new List<TextBox>();
+            boxes.Add(TBX_TitleInput);
+            boxes.Add(TBX_YearInput);
+            boxes.Add(TBX_IMDBRatingInput);
+            boxes.Add(TBX_PosterInput);
+            boxes.Add(TBX_PlotInput);
+            boxes.Add(TBX_RatedInput);
+            boxes.Add(TBX_DirectorInput);
+
+            foreach (TextBox box in boxes)
+            {
+                ClearInputText(box);
+            }
         }
     }
 }

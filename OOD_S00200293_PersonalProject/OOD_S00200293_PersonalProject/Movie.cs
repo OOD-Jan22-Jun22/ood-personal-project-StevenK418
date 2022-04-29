@@ -8,17 +8,21 @@ using System.Data.Entity;
 
 namespace OOD_S00200293_PersonalProject
 {
-    class Movie
+    public class Movie
     {
         public string MovieID { get; set; }
         public string Title { get; set; }
         public string Year { get; set; }
-        public string ImbdRating { get; set; }
+        public string imdbRating { get; set; }
         public string Poster { get; set; }
         public string Plot { get; set; }
         public string Rated { get; set; }
         public string Director { get; set; }
 
+        /// <summary>
+        /// Overrides the ToString method of the parent Object class.
+        /// </summary>
+        /// <returns>Returns a formatted string of the movie Title and Year.</returns>
         public override string ToString()
         {
             return string.Format($"{Title} - {Year}");
