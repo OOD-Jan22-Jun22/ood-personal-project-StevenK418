@@ -193,5 +193,15 @@ namespace OOD_S00200293_PersonalProject
                 movie.Director
             );
         }
+
+        private void RDBTN_Database_Checked(object sender, RoutedEventArgs e)
+        {
+            BTN_Random.IsEnabled = false;
+        }
+
+        private void RDBTN_API_Checked(object sender, RoutedEventArgs e)
+        {
+            BTN_Random.IsEnabled = true;
+        }
     }
 }
