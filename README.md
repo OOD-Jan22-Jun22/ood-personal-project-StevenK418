@@ -1,7 +1,9 @@
 # S00200293 Personal Project | Object Oriented Development #
-*Student Name:		Steven Kelly
-*Student ID:		S00200293
-*Github Details:	https://github.com/OOD-Jan22-Jun22/ood-personal-project-StevenK418.git
+
+Student details:
+* Student Name:		Steven Kelly
+* Student ID:		S00200293
+* Github Details:	https://github.com/OOD-Jan22-Jun22/ood-personal-project-StevenK418.git
 
 ## Features implemented ##
 
