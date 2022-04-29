@@ -59,16 +59,24 @@ namespace OOD_S00200293_PersonalProject
                 TBLK_IMDBRating.Text = movie.imdbRating;
                 TBLK_PEGI.Text = movie.Rated;
 
-                //Check if API returns a valid image URL before asigning to image
-                if (movie.Poster != "N/A")
+                //Check if API returns a valid image URL before assigning to image
+                if (movie.Poster != "N/A" || movie.Poster != "" || movie.Poster != null)
                 {
                     //Update the image
                     BitmapImage coverArt = new BitmapImage();
                     coverArt.BeginInit();
-                    coverArt.UriSource = new Uri(movie.Poster);
-                    coverArt.EndInit();
-                    IMG_CoverArt.Stretch = Stretch.Fill;
-                    IMG_CoverArt.Source = coverArt;
+
+                    //Check url to ensure it's valid
+                    Uri result;
+                    bool isvalid = Uri.TryCreate(movie.Poster, UriKind.Absolute, out result);
+                    if (isvalid == true)
+                    {
+                        Uri imageUri = result;
+                        coverArt.UriSource = imageUri;
+                        coverArt.EndInit();
+                        IMG_CoverArt.Stretch = Stretch.Fill;
+                        IMG_CoverArt.Source = coverArt;
+                    }
                 }
             }
         }

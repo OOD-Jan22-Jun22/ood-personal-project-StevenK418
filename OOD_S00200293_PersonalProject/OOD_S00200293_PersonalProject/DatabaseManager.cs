@@ -61,6 +61,7 @@ namespace OOD_S00200293_PersonalProject
         /// <returns>Returns a list of movies matching the title</returns>
         public List<Movie> SearchMoviesByTitle(string title)
         {
+            Movie.MovieData db = new Movie.MovieData();
             //Query the database for the given title and return the results
             var query = from m in db.Movies
                 where m.Title.Equals(title)
@@ -77,6 +78,7 @@ namespace OOD_S00200293_PersonalProject
         /// <returns>Returns a list of movies matching the title</returns>
         public List<Movie> SearchMoviesByKeyword(string keyword)
         {
+            Movie.MovieData db = new Movie.MovieData();
             //Query the database for the given title and return the results
             var query = from m in db.Movies
                 where m.Title.Contains(keyword)
@@ -93,6 +95,7 @@ namespace OOD_S00200293_PersonalProject
         /// <returns>Returns a list of all movies matching the result.</returns>
         public List<Movie> SearchMoviesByYear(string year)
         {
+            Movie.MovieData db = new Movie.MovieData();
             //Query the database for the given year and return the results
             var query = from m in db.Movies
                 where m.Year.Equals(year)
@@ -109,6 +112,7 @@ namespace OOD_S00200293_PersonalProject
         /// <returns>Returns a list of all movies matching the result.</returns>
         public List<Movie> SearchMoviesByDirector(string director)
         {
+            Movie.MovieData db = new Movie.MovieData();
             //Query the database for the given year and return the results
             var query = from m in db.Movies
                 where m.Director.Equals(director)
