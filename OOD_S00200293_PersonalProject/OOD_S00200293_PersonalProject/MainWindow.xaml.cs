@@ -1,12 +1,11 @@
 ﻿/*
- * Name:   Steven Kelly
- * ID:     S00200293
- * 
- *
+ * Name:              Steven Kelly
+ * ID:                S00200293
+ * Project:           Object Oriented Development - Personal Project
+ * Github repository: https://github.com/OOD-Jan22-Jun22/ood-personal-project-StevenK418.git
+ * Developer notes: Database is codefirst and should be created locally when adding movies.
  *
  */
-
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
