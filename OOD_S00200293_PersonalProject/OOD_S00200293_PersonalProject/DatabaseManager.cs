@@ -38,7 +38,7 @@ namespace OOD_S00200293_PersonalProject
         /// <param name="movies"></param>
         public static void AddToDatabase(List<Movie> movies)
         {
-            using (db)
+            using (db = new Movie.MovieData())
             {
 
                 //Create

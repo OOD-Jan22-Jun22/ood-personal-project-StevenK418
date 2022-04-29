@@ -118,15 +118,30 @@ namespace OOD_S00200293_PersonalProject
 
             //movies.Sort();
 
-            LBX_Movies.ItemsSource = movies;
+            //If using api, get each individual movie record using the title and store as list
+            if (RDBTN_API.IsChecked == true)
+            {
+                List<Movie> tempMovies = new List<Movie>();
+                foreach (Movie movie in movies)
+                {
+                    tempMovies.Add(APIManager.Instance.SearchMoviesByTitleOnly(movie.Title));
+                }
+
+                LBX_Movies.ItemsSource = tempMovies;
+            }
+            else
+            {
+                LBX_Movies.ItemsSource = movies;
+            }
 
             //Ensure we have results before passing to UpdateUI
             if (movies.Count > 0)
             {
                 //Set the selected item in the listbox to the first result returned
-                LBX_Movies.SelectedItem = movies[0];
+                LBX_Movies.SelectedItem = 0;
+                
                 //Update the UI fields with data about first movie returned
-                UpdateUI(movies[0]);
+                UpdateUI((Movie)LBX_Movies.SelectedItem);
             }
         }
 

@@ -24,19 +24,21 @@ namespace OOD_S00200293_PersonalProject
         public int CompareTo(Movie obj)
         {
             int result = 0;
-            if (double.Parse(Rated) > double.Parse(obj.Rated))
+            if (obj.Rated != null)
             {
-                result =  -1;
+                if (double.Parse(Rated) > double.Parse(obj.Rated))
+                {
+                    result = -1;
+                }
+                else if (double.Parse(Rated) == double.Parse(obj.Rated))
+                {
+                    result = 0;
+                }
+                else if (double.Parse(Rated) < double.Parse(obj.Rated))
+                {
+                    result = 1;
+                }
             }
-            else if (double.Parse(Rated) == double.Parse(obj.Rated))
-            {
-                result = 0;
-            }
-            else if (double.Parse(Rated) < double.Parse(obj.Rated))
-            {
-                result = 1;
-            }
-
             return result;
         }
 
